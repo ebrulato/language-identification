@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
+import waitress
 from flask import Flask, request
 from language_identification import LanguageIdentification
 app = Flask(__name__)
@@ -13,6 +15,9 @@ def add_message():
     lang = LANGUAGE.predict_lang(content['text'])
     return {"lang":lang[0][0], "score": lang[1][0]}
 
+def create_app():
+    return app
+
 """
 curl request is as follows
 
@@ -23,5 +28,6 @@ curl -X POST \
 """
 
 if __name__ == '__main__':
-    app.run(host= '127.0.0.1', port= 5000)
+    waitress.serve(create_app(), port=os.environ.get("WAITRESS_PORT"), host=os.environ.get("WAITRESS_HOST"))
+    #app.run(host= '127.0.0.1', port= 5000)
 
