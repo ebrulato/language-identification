@@ -10,9 +10,6 @@ RUN pip install flask
 RUN pip install waitress
 RUN pip install fasttext
 
-# Por RP4 8Gb
-# RUN apk del alpine-sdk
-
 COPY . /app
 WORKDIR /app
 ENV WAITRESS_PORT 3000
