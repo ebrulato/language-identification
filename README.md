@@ -28,11 +28,21 @@ The Docker version has been designed for a Raspberry Pi 4 (and run on the 8Gb ve
 If you want to build this image you need around 6 Gb on RAM (I've done it with Ubuntu). You may need to add some swap, and drink a verrrrry long coffee. 
 To build the Docker :
 
-   $ docker build --tag yourtag:yourversion .
+```
+$ docker build --tag yourtag:yourversion .
+```
 
 To start this container :
 
-   $ docker container run yourtag:yourversion
+```
+$ docker container run yourtag:yourversion
+```
+
+If you want to test it, you can use the version that I made on docker hub :
+
+```
+$ docker container run ebrulato/lingvidentigilo:1.0
+```
 
 ### Examples
 
@@ -49,9 +59,9 @@ curl -X POST \
 
 ```
 curl -X POST \
-  http://172.0.0.2:3000/detect_language \
+  http://172.17.0.2:3000/detect_language \
   -H 'Content-Type: application/json' \
-  -d '{"text":"hello"}'
+  -d '{"text":"mi manøas hejme"}'
 ```
 
 ### Future work
